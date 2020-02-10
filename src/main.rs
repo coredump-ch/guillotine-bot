@@ -79,9 +79,11 @@ async fn main() -> Result<(), Error> {
                     if let UpdateKind::Message(message) = update.kind {
                         if let MessageKind::Text { ref data, .. } = message.kind {
                             log::debug!("<{}>: {}", &message.from.first_name, data);
-                            if data == "/time" {
+                            if data == "/time" || data.starts_with("/time@") {
                                 let now = get_now();
                                 api.send(message.text_reply(format!("Current time is {}", now))).await?;
+                            } else if data == "/cutoff" || data.starts_with("/cutoff@") {
+                                api.send(message.text_reply(format!("The 1337est of all minutes is over at {}:{}", CUTOFF_HOUR, CUTOFF_MINUTE))).await?;
                             } else {
                                 api.send(message.text_reply("Hää???")).await?;
                             }
