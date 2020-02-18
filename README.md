@@ -1,4 +1,7 @@
-# gouillotine
+# guillotine
+
+[![Build status](https://circleci.com/gh/coredump-ch/guillotine-bot.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/coredump-ch/guillotine-bot)
+[![Docker Image](https://img.shields.io/badge/docker%20image-coredump%2Fguillotine--bot-yellow)](https://hub.docker.com/r/coredump/guillotine-bot)
 
 Telegram bot that "cuts off" 13:37 time at 13:38.
 
@@ -10,6 +13,25 @@ Telegram bot that "cuts off" 13:37 time at 13:38.
 ## Logging
 
 Set `RUST_LOG=guillotine=debug` (or `info` or `trace`).
+
+## Docker Image
+
+To build the docker image based on the current codebase:
+
+    $ docker build -t coredump/guillotine-bot:latest .
+
+Then launch a new container from the image:
+
+    $ docker run -d --name guillotine-bot \
+        -e TELEGRAM_BOT_TOKEN=... -e TELEGRAM_GROUP_ID=... \
+        coredump/guillotine-bot
+
+To stop it again:
+
+    $ docker stop guillotine-bot
+
+The docker image at https://hub.docker.com/r/coredump/guillotine-bot will be
+automatically rebuilt on every push to master.
 
 ## License
 
@@ -30,3 +52,7 @@ Licensed under the WTFPL:
 
   0. You just DO WHAT THE FUCK YOU WANT TO.
 ```
+
+<!-- Badges -->
+[circle-ci]: https://circleci.com/gh/coredump-ch/guillotine-bot/tree/master
+[circle-ci-badge]: https://circleci.com/gh/coredump-ch/guillotine-bot/tree/master.svg?style=shield
