@@ -35,7 +35,7 @@ fn should_trigger(tick: Instant, last_trigger: Instant) -> bool {
 async fn mark_end_of_the_wonderful_1337_minute<C: ToChatRef>(api: &Api, chat: C) {
     let mut msg = SendMessage::new(
         chat,
-        format!("Heareth ye 1337 folks, the time of the wonderful 13:37th minute has passed!\n\nIt is now {}", get_now())
+        format!("Heareth ye 1337 folks, the time of the wonderful 13:37th minute has passed! It is now {}.", get_now())
     );
     msg.parse_mode(ParseMode::Markdown);
     match api.send(msg).await {
