@@ -35,7 +35,7 @@ fn should_trigger(tick: Instant, last_trigger: Instant) -> bool {
 async fn mark_end_of_the_wonderful_1337_minute<C: ToChatRef>(api: &Api, chat: C) {
     let mut msg = SendMessage::new(
         chat,
-        format!("Heareth ye 1337 folks, the time of the wonderful 13:37th minute has passed! It is now {}.", get_now())
+        format!("Heareth ye 1337 folks, the time of the wonderful 13:37th minute has passed! It was {}.", get_now())
     );
     msg.parse_mode(ParseMode::Markdown);
     match api.send(msg).await {
@@ -81,7 +81,7 @@ async fn main() -> Result<(), Error> {
                             log::debug!("<{}>: {}", &message.from.first_name, data);
                             if data == "/time" || data.starts_with("/time@") {
                                 let now = get_now();
-                                api.send(message.text_reply(format!("Current time is {}", now))).await?;
+                                api.send(message.text_reply(format!("Current time was {}", now))).await?;
                             } else if data == "/cutoff" || data.starts_with("/cutoff@") {
                                 api.send(message.text_reply(format!("The 1337est of all minutes is over at {}:{}", CUTOFF_HOUR, CUTOFF_MINUTE))).await?;
                             } else {
